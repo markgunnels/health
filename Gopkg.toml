@@ -27,7 +27,7 @@
 
 [[constraint]]
   branch = "master"
-  name = "github.com/dimiro1/health"
+  name = "github.com/markgunnels/health"
 
 [[constraint]]
   name = "github.com/garyburd/redigo"
