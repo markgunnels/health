@@ -73,6 +73,28 @@ func TestNewSqlite3CheckerChecker(t *testing.T) {
 	}
 }
 
+func TestNewMsSQLCheckerChecker(t *testing.T) {
+	db, _, err := sqlmock.New()
+
+	if err != nil {
+		t.Errorf("sqlmock.New().error != nil, wants nil")
+	}
+
+	defer db.Close()
+
+	c := NewMsSQLChecker(db)
+	expected := "SELECT 1"
+
+	if c.CheckSQL != expected {
+		t.Errorf("c.CheckSQL == %s, wants %s", c.CheckSQL, expected)
+	}
+
+	expected = "SELECT @@VERSION"
+	if c.VersionSQL != expected {
+		t.Errorf("c.VersionSQL == %s, wants %s", c.VersionSQL, expected)
+	}
+}
+
 func TestCheck_up(t *testing.T) {
 	db, mock, err := sqlmock.New()
 
