@@ -33,6 +33,11 @@ func NewSqlite3Checker(db *sql.DB) Checker {
 	return NewChecker("SELECT 1", "SELECT sqlite_version()", db)
 }
 
+// NewMsSQLChecker returns a new db.Checker configured for use in MS SQL Server
+func NewMsSQLChecker(db *sql.DB) Checker {
+	return NewChecker("SELECT 1", "SELECT @@VERSION", db)
+}
+
 // Check execute two queries in the database
 // The first is a simple one used to verify if the database is up
 // If is Up then another query is executed, querying for the database version
